@@ -7,6 +7,4 @@
 * Jenkins
 * TeamCity
 * Bitbucket Pipelines
-* Bamboo
 * Gitlab
-

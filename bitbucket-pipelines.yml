@@ -1,26 +1,19 @@
-#  Template python-build
+---
 
-#  This template allows you to validate your python code.
-#  The workflow allows running tests and code linting on the default branch.
-
-image: python:3.8
+image: python:3.10.4
 
 pipelines:
   default:
     - parallel:
       - step:
-          name: Test
-          caches:
-            - pip
+          name: Build and Test
           script:
-            - if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-            - pip install pytest
-            - echo "Hello, Slurm!"
+            - pip install -r requirements.txt
             - ls -la
+            - python hello-world.py
             - echo "The code is okay"
       - step:
           name: Lint code
           script:
-            # Enforce style consistency across Python projects https://flake8.pycqa.org/en/latest/manpage.html
-            - pip install flake8
+            - pip install -r requirements.txt
             - flake8 . --extend-exclude=dist,build --show-source --statistics
